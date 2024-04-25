@@ -15,7 +15,6 @@ function CollectionsLayout() {
                 }
 
                 const collections = await response.json();
-                //console.table(collections);
                 setCollections(collections);
             } catch (error) {
                 console.log('Error fetching collections:', error.message);
@@ -34,7 +33,7 @@ function CollectionsLayout() {
 
     return (
         <div className="container">
-            <h2>Collections Table</h2>
+            <h1>Collections</h1>
             <table>
                 <thead>
                     <tr>
