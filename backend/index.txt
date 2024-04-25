@@ -1,0 +1,6 @@
+- User updates the stock and uploads:
+    controllers/stocks.js/updateAllStoc()
+
+- The number of remaing collection to the end of the week is
+// get how many collections to end of the weeek
+ claculated 

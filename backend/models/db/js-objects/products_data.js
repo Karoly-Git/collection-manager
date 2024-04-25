@@ -1,0 +1,81 @@
+const productsData = [
+    {
+        id: 1,
+        product_name: "PET coloured",
+        daily_production: 0,
+        bale_per_collection: 32,
+        group: "plastic",
+    },
+    {
+        id: 2,
+        product_name: "HDPE natural",
+        daily_production: 3,
+        bale_per_collection: 32,
+        group: "plastic",
+    },
+    {
+        id: 3,
+        product_name: "HDPE coloured",
+        daily_production: 3,
+        bale_per_collection: 32,
+        group: "plastic",
+    },
+    {
+        id: 4,
+        product_name: "PET clear",
+        daily_production: 14,
+        bale_per_collection: 32,
+        group: "plastic",
+    },
+    {
+        id: 5,
+        product_name: "Film sacks",
+        daily_production: 2,
+        bale_per_collection: 32,
+        group: "plastic",
+    },
+    {
+        id: 6,
+        product_name: "Mixed plastics",
+        daily_production: 4,
+        bale_per_collection: 32,
+        group: "plastic",
+    },
+    {
+        id: 7,
+        product_name: "ALuminium cans",
+        daily_production: 2.5,
+        bale_per_collection: 36,
+        group: "metal",
+    },
+    {
+        id: 8,
+        product_name: "Steel cans",
+        daily_production: 4,
+        bale_per_collection: 24,
+        group: "metal",
+    },
+    {
+        id: 9,
+        product_name: "OCC",
+        daily_production: 35,
+        bale_per_collection: 28,
+        group: "paper",
+    },
+    {
+        id: 10,
+        product_name: "Mixed paper",
+        daily_production: 45,
+        bale_per_collection: 26,
+        group: "paper",
+    },
+    {
+        id: 11,
+        product_name: "NiP",
+        daily_production: 25,
+        bale_per_collection: 28,
+        group: "paper",
+    },
+];
+
+module.exports = productsData;
