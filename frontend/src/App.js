@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import CollectionsTable from './components/CollectionsTable';
+import React from 'react';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
+
+import CollectionsLayout from './components/layouts/CollectionsLayout';
 import './App.css';
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/'>
+      <Route element={<h1>Home</h1>} />
+      <Route path='collections' element={<CollectionsLayout />} />
+      <Route path='*' element={<h1>Page Not Found</h1>} />
+    </Route>
+  )
+);
+
+
 function App() {
-  const [collections, setCollections] = useState([]);
-
-  useEffect(() => {
-    const fetchCollections = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/collections');
-
-        if (!response.ok) {
-          console.log('Fetch failed with status', response.status);
-          return;
-        }
-
-        const collections = await response.json();
-        //console.table(collections);
-        setCollections(collections);
-      } catch (error) {
-        console.log('Error fetching collections:', error.message);
-      }
-    }
-
-    fetchCollections();
-  }, []);
 
   return (
     <div className='App'>
-      <CollectionsTable collections={collections} />
+      <RouterProvider router={router} />
     </div >
   );
 }

@@ -1,7 +1,7 @@
 const express = require("express");
 const calcRouter = express.Router();
 
-const { endOfWeek } = require("../controllers/stocks");
+const { endOfWeek } = require("../controllers/stock");
 
 calcRouter.get("/end-of-week", endOfWeek);
 

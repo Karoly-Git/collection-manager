@@ -1,14 +1,35 @@
-import React from 'react';
-import '../styles/CollectionsTable.css';
+import React, { useEffect, useState } from 'react';
+import '../../styles/CollectionsLayout.css';
 
-const CollectionsTable = ({ collections }) => {
+function CollectionsLayout() {
+    const [collections, setCollections] = useState([]);
+
+    useEffect(() => {
+        const fetchCollections = async () => {
+            try {
+                const response = await fetch('http://localhost:8000/collections');
+
+                if (!response.ok) {
+                    console.log('Fetch failed with status', response.status);
+                    return;
+                }
+
+                const collections = await response.json();
+                //console.table(collections);
+                setCollections(collections);
+            } catch (error) {
+                console.log('Error fetching collections:', error.message);
+            }
+        }
+
+        fetchCollections();
+    }, []);
+
     let currentDay = null;
 
     const getDayOfWeek = (dateString) => {
-        const [day, month, year] = dateString.split('/');
-        const date = new Date(`${month}/${day}/${year}`);
         const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        return daysOfWeek[date.getDay()];
+        return daysOfWeek[new Date(dateString).getDay()];
     };
 
     return (
@@ -60,4 +81,4 @@ const CollectionsTable = ({ collections }) => {
     );
 }
 
-export default CollectionsTable;
+export default CollectionsLayout;
