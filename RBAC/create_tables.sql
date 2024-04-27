@@ -11,7 +11,6 @@ CREATE TABLE products (
 CREATE TABLE customers (
     id INTEGER PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    name_code VARCHAR(3) NOT NULL,
     short_name VARCHAR(15) NOT NULL,
     send_book_to TEXT[],
     send_document_to TEXT[]
@@ -19,7 +18,7 @@ CREATE TABLE customers (
 
 -- Table for collections
 CREATE TABLE collections (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     product_id INTEGER NOT NULL, -- ref to products.id
     date_of_collection DATE NOT NULL,
     customer_id INTEGER NOT NULL, -- ref to customers.id
@@ -33,7 +32,7 @@ CREATE TABLE collections (
 );
 
 -- Table for collection statuses
-CREATE TABLE time_log (
+CREATE TABLE timelog (
     collection_id INTEGER PRIMARY KEY, -- ref to collections.id
     check_in_time TIMESTAMP,
     loading_start_time TIMESTAMP,
@@ -56,7 +55,6 @@ CREATE TABLE collections_split (
     month VARCHAR(10) NOT NULL,
     product_id INTEGER PRIMARY KEY, -- ref to products.id
     customer_ids INTEGER[],
-    customer_codes TEXT[],
     split INTEGER[],
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
