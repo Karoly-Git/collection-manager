@@ -71,7 +71,7 @@
     },
     {
         "id": 11,
-        "product_name": "NiP",
+        "product_name": "News and pams",
         "daily_production": 25,
         "bale_per_collection": 28,
         "material_group_name": "paper"

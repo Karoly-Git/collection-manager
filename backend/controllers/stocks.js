@@ -1,7 +1,7 @@
-const stockData = require("../models/db/stock.json");
+const stockData = require("../models/db/stocks.json");
 const productsData = require("../models/db/products.json");
-const collectionsTable = require("../models/db/collections.json");
-const statusTable = require("../models/db/status.json");
+const collectionsData = require("../models/db/collections.json");
+const timelogData = require("../models/db/timelog.json");
 
 const getAllStocks = (req, res) => {
     try {
@@ -15,11 +15,14 @@ const getAllStocks = (req, res) => {
 const getStockById = (req, res) => {
     try {
         const { id } = req.params;
+        console.log(id);
         if (isNaN(Number(id))) {
             res.status(400).json({ error: "Invalid ID input" });
             return;
         }
-        const product = stockData.find((product) => product.id === Number(id));
+        const product = stockData.find(
+            (product) => product.product_id === Number(id)
+        );
         if (!product) {
             res.status(404).json({ error: "Product not found" });
         } else {
@@ -34,17 +37,17 @@ const getStockById = (req, res) => {
 const updateAllStock = (req, res) => {
     /*
 req.body = [
-    { "id": 1,  "stock": 0 },
-    { "id": 2,  "stock": 23 },
-    { "id": 3,  "stock": 32 },
-    { "id": 4,  "stock": 35 },
-    { "id": 5,  "stock": 29 },
-    { "id": 6,  "stock": 5 },
-    { "id": 7,  "stock": 13 },
-    { "id": 8,  "stock": 19 },
-    { "id": 9,  "stock": 22 },
-    { "id": 10, "stock": 61 },
-    { "id": 11, "stock": 61 }
+    { "id": 1,  "stock": 0, "collections_to_end_of_week": 7 },
+    { "id": 2,  "stock": 23, "collections_to_end_of_week": 0 },
+    { "id": 3,  "stock": 32, "collections_to_end_of_week": 1 },
+    { "id": 4,  "stock": 35, "collections_to_end_of_week": 0 },
+    { "id": 5,  "stock": 29, "collections_to_end_of_week": 1 },
+    { "id": 6,  "stock": 5 , "collections_to_end_of_week": 0},
+    { "id": 7,  "stock": 13, "collections_to_end_of_week": 0 },
+    { "id": 8,  "stock": 19, "collections_to_end_of_week": 0 },
+    { "id": 9,  "stock": 22, "collections_to_end_of_week": 4 },
+    { "id": 10, "stock": 61, "collections_to_end_of_week": 5 },
+    { "id": 11, "stock": 61, "collections_to_end_of_week": 2 }
 ]*/
     try {
         const stocksUpdate = req.body;
@@ -53,7 +56,7 @@ req.body = [
         } else {
             for (let obj of stocksUpdate) {
                 let stockElement = stockData.find(
-                    (element) => element.id === obj.id
+                    (element) => element.product_id === obj.id
                 );
                 stockElement.stock = obj.stock;
             }
@@ -74,7 +77,7 @@ const updateStockById = (req, res) => {
             res.status(400).json({ error: "Invalid inputs" });
         } else {
             let stockElement = stockData.find(
-                (element) => element.id === Number(id)
+                (element) => element.product_id === Number(id)
             );
             stockElement.stock = Number(stock);
             res.status(200).json(stockElement);
@@ -93,8 +96,8 @@ const getSumCollectionToEndOfWeek = require("./utility/getSumCollectionToEndOfWe
 const endOfWeek = (req, res) => {
     let endOfWeekStockData = getSumCollectionToEndOfWeek(
         productsData,
-        collectionsTable,
-        statusTable,
+        collectionsData,
+        timelogData,
         stockData
     );
     res.status(200).json(endOfWeekStockData);

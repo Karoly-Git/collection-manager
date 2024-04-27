@@ -1,8 +1,8 @@
-const collectionsTable = require("../models/db/collections.json");
+const collectionsData = require("../models/db/collections.json");
 
 const getAllCollections = (req, res) => {
     try {
-        res.status(200).json(collectionsTable);
+        res.status(200).json(collectionsData);
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ error: "Internal Server Error" });
@@ -16,7 +16,7 @@ const getCollectionById = (req, res) => {
             res.status(400).json({ error: "Invalid ID input" });
             return;
         }
-        const collection = collectionsTable.find(
+        const collection = collectionsData.find(
             (collection) => collection.id === Number(id)
         );
         if (!collection) {

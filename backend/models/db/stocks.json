@@ -1,0 +1,57 @@
+[
+    {
+        "product_id": 1,
+        "stock": 52,
+        "collections_to_end_of_week": 7
+    },
+    {
+        "product_id": 2,
+        "stock": 23,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 3,
+        "stock": 32,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 4,
+        "stock": 35,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 5,
+        "stock": 29,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 6,
+        "stock": 5,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 7,
+        "stock": 13,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 8,
+        "stock": 19,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 9,
+        "stock": 22,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 10,
+        "stock": 61,
+        "collections_to_end_of_week": 0
+    },
+    {
+        "product_id": 11,
+        "stock": 61,
+        "collections_to_end_of_week": 0
+    }
+]

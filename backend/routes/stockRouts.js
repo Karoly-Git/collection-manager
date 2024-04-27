@@ -5,7 +5,7 @@ const {
     getStockById,
     updateAllStock,
     updateStockById,
-} = require("../controllers/stock");
+} = require("../controllers/stocks");
 
 stockRouter.get("/", getAllStocks);
 stockRouter.get("/:id", getStockById);

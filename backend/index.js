@@ -9,8 +9,8 @@ const calcRouter = require("./routes/calcRouts");
 const collectionRouts = require("./routes/collectionRouts");
 const customerRouts = require("./routes/customerRouts");
 const productRouts = require("./routes/productRouts");
-const statusRouts = require("./routes/statusRouts");
 const stockRouts = require("./routes/stockRouts");
+const timelogRouts = require("./routes/timelogRouts");
 
 app.get("/", (req, res) => {
     res.json({
@@ -26,7 +26,7 @@ app.use("/calc", calcRouter);
 app.use("/collections", collectionRouts);
 app.use("/customers", customerRouts);
 app.use("/products", productRouts);
-app.use("/status", statusRouts);
+app.use("/timelogs", timelogRouts);
 app.use("/stocks", stockRouts);
 
 app.listen(PORT, () => {
