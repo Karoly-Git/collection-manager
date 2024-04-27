@@ -1,0 +1,44 @@
+Role-Based Access Control
+=========================
+
+Employees:
+----------
+- Richard:    Site Operation Manager
+- George:     Recycling Manager
+
+- Karoly:     MRF Supervisor
+- Rafal:      MRF Supervisor
+
+- Mateusz:    Assistant Supervisor
+
+- Tomek:      Weighbridge Operator
+- Julie:      Weighbridge Operator
+
+- Daniel:     Senior Forklift Driver
+- Jorge:      Senior Forklift Driver
+
+- Boyka:      Senior Baler Operator
+
+- Artur:      Forklift Driver
+- Dawid:      Forklift Driver
+
+Accesses:
+----------
+- general_user:    Read collections data
+- operative:       Access to update the collections status
+- admin:           Access to edit collections
+
+Roles:
+----------
+- Richard:    general_user
+- George:     general_user
+- Karoly:     general_user, operative, admin
+- Rafal:      general_user, operative, admin
+- Mateusz:    general_user, operative
+- Tomek:      general_user, operative
+- Julie:      general_user, operative
+- Daniel:     general_user, operative
+- Jorge:      general_user, operative, admin
+- Boyka:      general_user, operative
+- Artur:      general_user, operative
+- Dawid:      general_user, operative

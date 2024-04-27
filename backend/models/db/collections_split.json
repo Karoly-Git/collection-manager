@@ -1,79 +1,91 @@
 [
     {
+        "id": 1,
         "year": 2024,
         "month": "april",
         "product_id": 1,
-        "customer_codes": [],
-        "split": []
+        "customer_ids": [null],
+        "customer_codes": [null],
+        "split": [null]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 2,
-        "customer_codes": [6],
+        "customer_ids": [6],
+        "customer_codes": ["vol"],
         "split": [100]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 3,
-        "customer_codes": [4],
+        "customer_ids": [4],
+        "customer_codes": ["van"],
         "split": [100]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 4,
-        "customer_codes": [5],
+        "customer_ids": [5],
+        "customer_codes": ["clt"],
         "split": [100]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 5,
-        "customer_codes": [7],
+        "customer_ids": [7],
+        "customer_codes": ["rff"],
         "split": [100]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 6,
-        "customer_codes": [4],
+        "customer_ids": [4],
+        "customer_codes": ["van"],
         "split": [100]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 7,
-        "customer_codes": [1, 2],
+        "customer_ids": [1, 2],
+        "customer_codes": ["ung", "vip"],
         "split": [50, 50]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 8,
-        "customer_codes": [3],
+        "customer_ids": [3],
+        "customer_codes": ["sim"],
         "split": [100]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 9,
-        "customer_codes": [6, 10, 11],
+        "customer_ids": [6, 10, 11],
+        "customer_codes": ["vol", "edw", "ekm"],
         "split": [34, 33, 33]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 10,
-        "customer_codes": [6, 8],
+        "customer_ids": [6, 8],
+        "customer_codes": ["vol", "peu"],
         "split": [50, 50]
     },
     {
         "year": 2024,
         "month": "april",
         "product_id": 11,
-        "customer_codes": [8, 9, 2],
+        "customer_ids": [2, 8, 9],
+        "customer_codes": ["vip", "peu", "wpt"],
         "split": [34, 33, 33]
     }
 ]
