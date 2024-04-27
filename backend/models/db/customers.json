@@ -2,6 +2,7 @@
     {
         "id": 1,
         "name": "UN-Global",
+        "name_code": "ung",
         "short_name": "UN-Global",
         "send_book_to": [
             "nitin.khokha@unglobaltrading.co.uk",
@@ -15,28 +16,23 @@
     {
         "id": 2,
         "name": "Vipa Group",
+        "name_code": "vip",
         "short_name": "Vipa",
-        "send_book_to": [
-            "ollie.nicholls@vipagroup.com"
-        ],
-        "send_document_to": [
-            "ollie.nicholls@vipagroup.com"
-        ]
+        "send_book_to": ["ollie.nicholls@vipagroup.com"],
+        "send_document_to": ["ollie.nicholls@vipagroup.com"]
     },
     {
         "id": 3,
         "name": "Sims Metal",
+        "name_code": "sim",
         "short_name": "Sims",
-        "send_book_to": [
-            "simon.palmer@simsmm.com"
-        ],
-        "send_document_to": [
-            "simon.palmer@simsmm.com"
-        ]
+        "send_book_to": ["simon.palmer@simsmm.com"],
+        "send_document_to": ["simon.palmer@simsmm.com"]
     },
     {
         "id": 4,
         "name": "Vanden Reycling",
+        "name_code": "van",
         "short_name": "Vanden",
         "send_book_to": [
             "n.scott@vandenrecycling.com",
@@ -50,39 +46,31 @@
     {
         "id": 5,
         "name": "Clean Tech",
+        "name_code": "clt",
         "short_name": "Clean Tech",
-        "send_book_to": [
-            "jesstd@clean-tech.eu"
-        ],
-        "send_document_to": [
-            "jesstd@clean-tech.eu"
-        ]
+        "send_book_to": ["jesstd@clean-tech.eu"],
+        "send_document_to": ["jesstd@clean-tech.eu"]
     },
     {
         "id": 6,
         "name": "Volker Grouppe",
+        "name_code": "vol",
         "short_name": "Volker",
-        "send_book_to": [
-            "logistics@volker-gruppe.com"
-        ],
-        "send_document_to": [
-            "logistics@volker-gruppe.com"
-        ]
+        "send_book_to": ["logistics@volker-gruppe.com"],
+        "send_document_to": ["logistics@volker-gruppe.com"]
     },
     {
         "id": 7,
         "name": "Recycling for Future",
+        "name_code": "rff",
         "short_name": "Rff",
-        "send_book_to": [
-            "darren@recycleforfuture.com"
-        ],
-        "send_document_to": [
-            "darren@recycleforfuture.com"
-        ]
+        "send_book_to": ["darren@recycleforfuture.com"],
+        "send_document_to": ["darren@recycleforfuture.com"]
     },
     {
         "id": 8,
         "name": "Peute Group",
+        "name_code": "peu",
         "short_name": "",
         "send_book_to": [
             "h.middendorp@peute.nl",
@@ -98,28 +86,23 @@
     {
         "id": 9,
         "name": "Waste Paper Trade",
+        "name_code": "wpt",
         "short_name": "WPT",
-        "send_book_to": [
-            "heeres.d@wpt-nl.com"
-        ],
-        "send_document_to": [
-            "heeres.d@wpt-nl.com"
-        ]
+        "send_book_to": ["heeres.d@wpt-nl.com"],
+        "send_document_to": ["heeres.d@wpt-nl.com"]
     },
     {
         "id": 10,
         "name": "Edwards Recycling",
+        "name_code": "edw",
         "short_name": "Edwards",
-        "send_book_to": [
-            "weighbridge@edwardsrecycling.co.uk"
-        ],
-        "send_document_to": [
-            "weighbridge@edwardsrecycling.co.uk"
-        ]
+        "send_book_to": ["weighbridge@edwardsrecycling.co.uk"],
+        "send_document_to": ["weighbridge@edwardsrecycling.co.uk"]
     },
     {
         "id": 11,
         "name": "Ekman Recycling",
+        "name_code": "ekm",
         "short_name": "Ekman",
         "send_book_to": [
             "vivek.tamakuwala@ekmangroup.com",
