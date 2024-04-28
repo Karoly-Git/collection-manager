@@ -15,6 +15,8 @@ CREATE TABLE customers (
     send_book_to TEXT[],
     send_document_to TEXT[]
 );
+--==============================================
+--==============================================
 
 -- Table for collections
 CREATE TABLE collections (
