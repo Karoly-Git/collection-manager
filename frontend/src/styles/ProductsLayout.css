@@ -1,0 +1,72 @@
+/* General container styles with border and border-radius */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Styling for product list with grid display and spacing */
+.products-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    padding: 0;
+    margin: 20px 0;
+}
+
+/* Styles for each product, with hover effects and cursor pointer */
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+    background-color: #fff;
+}
+
+.product:hover {
+    background-color: lightblue;
+    transform: scale(1.075);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for headings and subheadings within a product */
+.product h2 {
+    margin: 0 0 10px 0;
+    color: #007bff; /* Bootstrap primary color */
+    font-size: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.product h2 span {
+    font-weight: normal;
+    color: #555;
+}
+
+.product h4 {
+    margin: 10px 0;
+    color: #333;
+    font-weight: 500;
+}
+
+.product h4 span {
+    font-weight: normal;
+    color: #666;
+}
+
+.group-name {
+    font-size: small;
+}
+
+/* Paragraph styles within a product */
+.product p {
+    margin: 0;
+    padding: 0;
+    color: #666;
+}

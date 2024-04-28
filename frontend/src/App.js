@@ -11,6 +11,7 @@ import "./App.css";
 
 import CollectionsLayout from "./components/layouts/CollectionsLayout";
 import CustomersLayout from "./components/layouts/CustomersLayout";
+import ProductsLayout from "./components/layouts/ProductsLayout";
 
 function App() {
     const [customers, setCustomers] = useState([]);
@@ -45,6 +46,10 @@ function App() {
                 <Route
                     path="customers"
                     element={<CustomersLayout customers={customers} />}
+                />
+                <Route
+                    path="products"
+                    element={<ProductsLayout products={products} />}
                 />
                 <Route path="*" element={<h1>Page Not Found</h1>} />
             </Route>
