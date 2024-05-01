@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/CustomersLayout.css";
 
-function CustomersLayout({ customers }) {
+export default function CustomersLayout({ customers }) {
     const sortedCustomers = customers
         .slice()
         .sort((a, b) => a.name.localeCompare(b.name));
@@ -27,4 +27,3 @@ function CustomersLayout({ customers }) {
     );
 }
 
-export default CustomersLayout;

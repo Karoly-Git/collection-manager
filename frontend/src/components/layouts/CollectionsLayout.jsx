@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/CollectionsLayout.css";
 
-function CollectionsLayout({ collections, customers, products }) {
+export default function CollectionsLayout({ collections, customers, products }) {
     let currentDay = null;
 
     const getDayOfWeek = (dateString) => {
@@ -84,4 +84,3 @@ function CollectionsLayout({ collections, customers, products }) {
     );
 }
 
-export default CollectionsLayout;
