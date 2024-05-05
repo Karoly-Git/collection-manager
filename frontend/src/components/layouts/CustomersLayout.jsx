@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Link } from 'react-router-dom'
 import "../../styles/CustomersLayout.css";
 
 export default function CustomersLayout({ customers }) {
     const sortedCustomers = customers
-        .slice()
-        .sort((a, b) => a.name.localeCompare(b.name));
+        /*.sort((a, b) => a.name.localeCompare(b.name))*/;
 
     return (
         <div className="container">
@@ -12,18 +12,39 @@ export default function CustomersLayout({ customers }) {
             <br></br>
             <ul className="customer-list">
                 {sortedCustomers.map((customer) => (
-                    <li key={customer.id} className="customer">
-                        <h2>{customer.name}</h2>
-                        <br></br>
-                        <h4>Bookings to:</h4>
-                        <p>{customer.send_book_to.join(", ")}</p>
-                        <br></br>
-                        <h4>Documents to:</h4>
-                        <p>{customer.send_document_to.join(", ")}</p>
-                    </li>
+                    <Link key={customer.id} to={`/customers/${customer.id}`}>
+                        <li className="customer">
+                            <h2>
+                                <span>
+                                    {customer.name}
+                                </span>
+                                <span>
+                                    ID: {customer.id}
+                                </span>
+                            </h2>
+
+                            <br></br>
+
+                            <h4>Bookings to:</h4>
+                            <ul>
+                                {customer.send_book_to.map((recipient, i) => (
+                                    <li key={"book_recipient" + i}>{recipient}</li>
+                                ))}
+                            </ul>
+
+                            <br></br>
+
+                            <h4>Documents to:</h4>
+                            <ul>
+                                {customer.send_document_to.map((recipient, i) => (
+                                    <li key={"document_recipient" + i}>{recipient}</li>
+                                ))}
+                            </ul>
+                        </li>
+                    </Link>
                 ))}
             </ul>
-        </div>
+        </div >
     );
 }
 

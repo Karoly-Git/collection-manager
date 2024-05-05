@@ -1,7 +1,6 @@
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -11,6 +10,30 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
+}
+
+.customer-list a {
+    text-decoration: none;
+    color: black;
+}
+
+.customer-list li {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+h2 span:nth-child(2) {
+    font-weight: normal;
+    font-size: small;
+}
+
+h4 {
+    margin-bottom: 0.5rem;
 }
 
 .customer {
@@ -23,5 +46,5 @@
 
 .customer:hover {
     background-color: lightblue;
-    transform: scale(1.075);
+    transform: scale(1.05);
 }

@@ -59,7 +59,8 @@ ul li {
     cursor: pointer;
 }
 
-button {
+.btn {
+    display: inline-block;
     padding: 10px 20px;
     background-color: #007bff !important;
     color: #fff;
@@ -68,6 +69,15 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: black !important;
+.btn:hover {
+    background-color: goldenrod !important;
+}
+
+.disabled-btn {
+    background-color: gray !important;
+    cursor: not-allowed;
+}
+
+.disabled-btn:hover {
+    background-color: gray !important;
 }

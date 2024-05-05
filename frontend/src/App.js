@@ -53,7 +53,7 @@ function App() {
                     element={<ProductsLayout products={products} />}
                 />
                 <Route
-                    path="edit-customer"
+                    path="customers/:customer_id"
                     element={<EditCustomerLayout />}
                 />
                 <Route path="*" element={<h1>Page Not Found</h1>} />
