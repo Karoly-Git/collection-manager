@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
 
 import "../../styles/EditCustomerStyle.css";
@@ -12,7 +11,6 @@ export default function EditCustomerLayout() {
     const [shortName, setShortName] = useState("");
     const [bookingRecipients, setBookingRecipients] = useState([]);
     const [documentRecipients, setDocumentRecipients] = useState([]);
-
     const [isDisabled, setIsDisabled] = useState(true);
 
     useEffect(() => {
@@ -27,11 +25,11 @@ export default function EditCustomerLayout() {
 
                 const customerData = await response.json();
 
-                setCustomer(customerData);
+                setCustomer({ ...customerData });
                 setCustomerName(customerData.name);
                 setShortName(customerData.short_name);
-                setBookingRecipients(customerData.send_book_to);
-                setDocumentRecipients(customerData.send_document_to);
+                setBookingRecipients([...customerData.send_book_to]);
+                setDocumentRecipients([...customerData.send_document_to]);
 
                 //console.log(JSON.stringify(customerData));
             } catch (error) {
@@ -45,62 +43,49 @@ export default function EditCustomerLayout() {
         setStateFunction(e.target.value);
     };
 
-    const checkNameChange = (e, property_name) => {
-        let customerObjStr = JSON.stringify(customer);
-        let newObjStr = JSON.stringify(
-            {
-                ...customer,
-                [property_name]: e.target.value
-            }
-        );
-        setIsDisabled(newObjStr === customerObjStr);
-        //console.log(newObjStr === customerObjStr);
+    const checkFormInputChanges = (inputIndex) => {
+        if (inputIndex === undefined) {
+            // Name branch
+            const nameFieldValue = document.getElementById('name-input').value;
+            const shortNameFieldValue = document.getElementById('short-name-input').value;
+
+            const isNameUnchanged = customer.name === nameFieldValue;
+            const isShortNameUnchanged = customer.short_name === shortNameFieldValue;
+
+            setIsDisabled(isNameUnchanged && isShortNameUnchanged);
+        } else {
+            // Email list branch
+            const bookingRecipientValues = [...document.querySelectorAll(".book-recipient")].map(el => el.value);
+            const documentRecipientValues = [...document.querySelectorAll(".document-recipient")].map(el => el.value);
+
+            const areBookingRecipientsUnchanged = JSON.stringify(bookingRecipientValues) === JSON.stringify(customer.send_book_to);
+            const areDocumentRecipientsUnchanged = JSON.stringify(documentRecipientValues) === JSON.stringify(customer.send_document_to);
+
+            setIsDisabled(areBookingRecipientsUnchanged && areDocumentRecipientsUnchanged);
+        }
     };
 
     const handleRecipientChange = (e, index, recipientsList, setStateFunction) => {
-        let updatedRecipient = e.target.value;
-        recipientsList[index] = updatedRecipient;
-        setStateFunction(recipientsList);
-        console.log(`"${updatedRecipient}"`);
-        console.log(recipientsList);
+        let newRecipient = [...recipientsList];
+        newRecipient[index] = e.target.value;
+        setStateFunction(newRecipient);
     };
 
-    const removeRecipient = (index, list, setList) => {
+    const removeRecipient = (index, list, setListFunction) => {
         let toRemove = list[index];
         let newList = list.filter(recipient => recipient !== toRemove);
-        setList(newList);
+        setListFunction(newList);
         setIsDisabled(false);
     };
 
-    const addRecipient = (list, setList) => {
+    const addRecipient = (list, setListFunction) => {
         let newList = [...list, "new@email.com"];
-        setList(newList);
+        setListFunction(newList);
         setIsDisabled(false);
-    };
-
-    /*
-    const handleFocus = (e, index, list) => {
-        e.target.value = `${list[index]}`;
-        //e.target.placeholder;
-    };
-
-    const handleBlur = (e, index, list, setList) => {
-        let newList = [...list];
-        newList[index] = e.target.value;
-        setList(newList);
-    };
-    */
-
-    const handleFocus = (e) => {
-        e.target.value = e.target.placeholder;
-    };
-
-    const handleBlur = (e) => {
-        e.target.placeholder = e.target.value;
     };
 
     const handleKeyDown = (e) => {
-        if (e.key === 'Escape') {
+        if (e.key === 'Escape' || e.key === 'Enter') {
             e.target.blur();
         }
     };
@@ -117,21 +102,15 @@ export default function EditCustomerLayout() {
             }
         };
 
-        // Construct the PUT request
         fetch(`http://localhost:8000/customers/update/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                // Add any other headers as needed
             },
             body: JSON.stringify(formData)
         })
-            .then(response => {
-                // Parse response body as JSON
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                // Log the responded JSON data
                 console.log(data);
                 setCustomer(data);
                 setCustomerName(data.name);
@@ -141,82 +120,73 @@ export default function EditCustomerLayout() {
                 setIsDisabled(true);
             })
             .catch(error => {
-                // Handle error
                 console.error('Error:', error);
             });
     };
+
     return (
         <div className='container'>
             <h1>Customer details (id: {customer_id})</h1>
             <form onSubmit={(e) => handleSubmit(e, customer_id)}>
-                <p>
-                    <strong>Name:</strong>
-                    <input
-                        type="text"
-                        value={customerName}
-                        placeholder='name required'
-                        onChange={
-                            (e) => {
+                <div>
+                    <p>
+                        <strong>Name:</strong>
+                        <input
+                            id='name-input'
+                            type="text"
+                            value={customerName}
+                            placeholder='name required'
+                            onKeyDown={handleKeyDown}
+                            onChange={(e) => {
                                 handleNameChange(e, setCustomerName);
-                                checkNameChange(e, 'name');
-                            }
-                        }
-                        onKeyDown={handleKeyDown}
-                    />
-                </p>
+                                checkFormInputChanges();
+                            }}
+                        />
+                    </p>
 
-                <p>
-                    <strong>Short name:</strong>
-                    <input
-                        type="text"
-                        value={shortName}
-                        placeholder='short name required'
-                        required
-                        onChange={
-                            (e) => {
+                    <p>
+                        <strong>Short name:</strong>
+                        <input
+                            id='short-name-input'
+                            type="text"
+                            value={shortName}
+                            placeholder='short name required'
+                            onKeyDown={handleKeyDown}
+                            onChange={(e) => {
                                 handleNameChange(e, setShortName);
-                                checkNameChange(e, 'short_name');
-                            }
-                        }
-                        onKeyDown={handleKeyDown}
-                    />
-                </p>
+                                checkFormInputChanges();
+                            }}
+                        />
+                    </p>
+                </div>
 
                 <div>
                     <h3>
                         <strong>Booking recipients:</strong>
                         <span
                             className='add-btn'
-                            onClick={
-                                () => {
-                                    addRecipient(bookingRecipients, setBookingRecipients);
-                                }
-                            }
-                        >ADD
-                        </span>
+                            onClick={() => addRecipient(bookingRecipients, setBookingRecipients)}
+                        >ADD</span>
                     </h3>
                     <ul>
                         {bookingRecipients.map((recipient, index) => (
-                            <li key={uuidv4()}>
+                            <li key={"booking-recipients" + index}>
                                 <input
+                                    className='book-recipient'
                                     type="text"
-                                    placeholder={recipient}
-                                    onFocus={handleFocus}
-                                    onBlur={handleBlur}
-                                    onChange={
-                                        (e) => {
-                                            handleRecipientChange(e, index, bookingRecipients, setBookingRecipients);
-                                        }
-                                    }
+                                    value={recipient}
+                                    placeholder="email required or delete"
                                     onKeyDown={handleKeyDown}
+                                    onChange={(e) => {
+                                        handleRecipientChange(e, index, bookingRecipients, setBookingRecipients);
+                                        checkFormInputChanges(index);
+                                    }}
                                 />
                                 <span
                                     className='delete-btn'
-                                    onClick={
-                                        () => {
-                                            removeRecipient(index, bookingRecipients, setBookingRecipients);
-                                        }
-                                    }
+                                    onClick={() => {
+                                        removeRecipient(index, bookingRecipients, setBookingRecipients);
+                                    }}
                                 >DELETE</span>
                             </li>
                         ))}
@@ -228,67 +198,58 @@ export default function EditCustomerLayout() {
                         <strong>Document recipients:</strong>
                         <span
                             className='add-btn'
-                            onClick={
-                                () => {
-                                    addRecipient(documentRecipients, setDocumentRecipients)
-                                }
-                            }
+                            onClick={() => {
+                                addRecipient(documentRecipients, setDocumentRecipients)
+                            }}
                         >ADD</span>
                     </h3>
                     <ul>
                         {documentRecipients.map((recipient, index) => (
-                            <li key={uuidv4()}>
+                            <li key={"document-recipients" + index}>
                                 <input
+                                    className='document-recipient'
                                     type="text"
-                                    placeholder={recipient}
-                                    onFocus={handleFocus}
-                                    onBlur={handleBlur}
-                                    onChange={
-                                        (e) => {
-                                            handleRecipientChange(e, index, documentRecipients, setDocumentRecipients);
-                                        }
-                                    }
+                                    value={recipient}
+                                    placeholder="email required or delete"
                                     onKeyDown={handleKeyDown}
+                                    onChange={(e) => {
+                                        handleRecipientChange(e, index, documentRecipients, setDocumentRecipients);
+                                        checkFormInputChanges(index);
+                                    }}
                                 />
                                 <span
                                     className='delete-btn'
-                                    onClick={
-                                        () => {
-                                            removeRecipient(index, documentRecipients, setDocumentRecipients)
-                                        }
-                                    }
+                                    onClick={() => {
+                                        removeRecipient(index, documentRecipients, setDocumentRecipients)
+                                    }}
                                 >DELETE</span>
                             </li>
                         ))}
                     </ul>
                 </div>
+
                 <button
                     className={isDisabled ? 'disabled-btn btn' : 'btn'}
                     disabled={isDisabled}
                     onClick={() => console.log('Save btn clicked')}
-                >Save
-                </button>
-                &nbsp;
-                &nbsp;
-                &nbsp;
+                >Save</button>
+
                 <div
                     className='btn'
-                    onClick={
-                        () => {
-                            console.log(`${customer_id} ${customerName} (${shortName})`);
-                            console.log("Booking recipients:");
-                            bookingRecipients.forEach(e => console.log("\t", `"${e}"`));
+                    onClick={() => {
+                        console.log(`${customer_id} ${customerName} (${shortName})`);
+                        console.log("Booking recipients:");
+                        bookingRecipients.forEach(e => console.log("\t", `"${e}"`));
 
-                            console.log("-----");
+                        console.log("-----");
 
-                            console.log("Document recipients:");
-                            documentRecipients.forEach(e => console.log("\t", `"${e}"`));
+                        console.log("Document recipients:");
+                        documentRecipients.forEach(e => console.log("\t", `"${e}"`));
 
-                            console.log("");
-                        }
-                    }
+                        console.log("");
+                    }}
                 >Log</div>
             </form>
-        </div >
+        </div>
     )
 }
